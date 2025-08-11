@@ -14,16 +14,15 @@ public class RedisConfig {
 
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
-        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
-        config.setHostName("master.my-redis-v1.mkpp9f.aps1.cache.amazonaws.com");
-        config.setPort(6582);
+    RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
+    config.setHostName("master.my-redis-v1.mkpp9f.aps1.cache.amazonaws.com");
+    config.setPort(6582);
 
-        // AWS Redis with TLS
         LettuceClientConfiguration clientConfig = LettuceClientConfiguration.builder()
-                .useSsl()
-                .commandTimeout(Duration.ofSeconds(60))
-                .build();
+            .useSsl()
+            .build();
 
         return new LettuceConnectionFactory(config, clientConfig);
     }
+
 }
